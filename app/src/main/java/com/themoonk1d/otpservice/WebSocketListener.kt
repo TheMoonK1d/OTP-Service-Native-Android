@@ -28,7 +28,7 @@ class WebSocketListener(val context: Activity) : WebSocketListener() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessage(webSocket: WebSocket, text: String) {
         super.onMessage(webSocket, text)
-        msg("onMessage: ${text.toString()}")
+        msg("onMessage: $text")
         context.runOnUiThread(Runnable {
             val lst = context.findViewById<RecyclerView>(R.id.r_view)
             val w = DataModel(
@@ -38,7 +38,6 @@ class WebSocketListener(val context: Activity) : WebSocketListener() {
             if (counter == 0){
                 counter ++
                 data.add(w)
-
             }else{
 
                 SendSMS(
@@ -72,7 +71,6 @@ class WebSocketListener(val context: Activity) : WebSocketListener() {
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
         super.onFailure(webSocket, t, response)
         msg("Err ${t.message} $response ")
-
         if (rootView != null) {
             Snackbar.make(rootView, "Connecting", Snackbar.LENGTH_LONG).show()
         }
